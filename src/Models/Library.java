@@ -29,7 +29,7 @@ public class Library {
 
     public void lendBook(String title) {
         for (Book book : books) {
-            if (book.getTitle().equals(title)) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 if (book.isAvailable()) {
                     book.setAvailable(false);
                     System.out.println("Livro '" + title + "' emprestado com sucesso.");
@@ -44,7 +44,7 @@ public class Library {
 
     public void returnBook(String title) {
         for (Book book : books) {
-            if (book.getTitle().equals(title)) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 if (!book.isAvailable()) {
                     book.setAvailable(true);
                     System.out.println("Livro '" + title + "' devolvido com sucesso.");
