@@ -1,14 +1,14 @@
 package Models;
 
 public class Book {
-    private String title;
-    private String author;
-    private boolean availability;
+    private final String title;
+    private final String author;
+    private boolean available;
 
     public Book(String title, String author) {
         this.title = title;
         this.author = author;
-        this.availability = true;
+        this.available = true;
     }
 
     public String getTitle() {
@@ -19,11 +19,11 @@ public class Book {
         return author;
     }
 
-    public boolean isAvailability() {
-        return availability;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
