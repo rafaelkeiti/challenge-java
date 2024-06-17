@@ -15,34 +15,45 @@ public class Library {
     }
 
     public void listAvailableBooks() {
+        boolean hasAvailableBooks = false;
         for (Book book : books) {
             if (book.isAvailable()) {
                 System.out.println("Nome: " + book.getTitle() + " - Autor: " + book.getAuthor());
-            } else {
-                System.out.println("Nenhum livro disponível!");
+                hasAvailableBooks = true;
             }
+        }
+        if (!hasAvailableBooks) {
+            System.out.println("Nenhum livro disponível!");
         }
     }
 
     public void lendBook(String title) {
         for (Book book : books) {
-            if (book.getTitle().equals(title) && book.isAvailable()) {
-                book.setAvailable(false);
-                System.out.println("Livro '" + title + "' emprestado com sucesso.");
-            } else {
-                System.out.println("Livro não encontrado ou não disponível para empréstimo.");
+            if (book.getTitle().equals(title)) {
+                if (book.isAvailable()) {
+                    book.setAvailable(false);
+                    System.out.println("Livro '" + title + "' emprestado com sucesso.");
+                } else {
+                    System.out.println("Livro não disponível para empréstimo.");
+                }
+                return;
             }
         }
+        System.out.println("Livro não encontrado.");
     }
 
     public void returnBook(String title) {
         for (Book book : books) {
-            if (book.getTitle().equals(title) && !book.isAvailable()) {
-                book.setAvailable(true);
-                System.out.println("Livro '" + title + "' devolvido com sucesso.");
-            } else {
-                System.out.println("Livro não encontrado ou já disponível.");
+            if (book.getTitle().equals(title)) {
+                if (!book.isAvailable()) {
+                    book.setAvailable(true);
+                    System.out.println("Livro '" + title + "' devolvido com sucesso.");
+                } else {
+                    System.out.println("Livro já está disponível.");
+                }
+                return;
             }
         }
+        System.out.println("Livro não encontrado.");
     }
 }
