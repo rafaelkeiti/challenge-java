@@ -2,6 +2,7 @@ package Application;
 
 import Models.Library;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -40,9 +41,13 @@ public class Main {
     }
 
     private static int getUserOption(Scanner scanner) {
-        int option = scanner.nextInt();
-        scanner.nextLine();
-        return option;
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            System.out.println("Opção inválida! Digite um número válido.");
+            return -1;
+        }
     }
 
     private static void handleMenuOption(int option, Library library, Scanner scanner) {
